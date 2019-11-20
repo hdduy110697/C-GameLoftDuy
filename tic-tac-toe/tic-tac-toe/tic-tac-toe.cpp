@@ -6,7 +6,8 @@
 using namespace std;
 
 #define SIZE_BOARD 9
-#define MARK_WIN 3
+#define Point_Need_To_WIN 3 
+
 
 void ShowTheBoard(string board[SIZE_BOARD][SIZE_BOARD])
 {
@@ -37,6 +38,7 @@ void PlayChessPlayer(string location, string board[SIZE_BOARD][SIZE_BOARD], int 
 	}
 }
 
+//check win full case
 bool CheckWinhorizontal(string location, string board[SIZE_BOARD][SIZE_BOARD], int player) {
 	string mark = "";
 
@@ -76,7 +78,7 @@ bool CheckWinhorizontal(string location, string board[SIZE_BOARD][SIZE_BOARD], i
 			break;
 		}
 	}
-	bool result = countLeft + countRight == MARK_WIN;
+	bool result = countLeft + countRight == Point_Need_To_WIN;
 	return result;
 }
 bool CheckWinColumn(string location, string board[SIZE_BOARD][SIZE_BOARD], int player) {
@@ -91,9 +93,7 @@ bool CheckWinColumn(string location, string board[SIZE_BOARD][SIZE_BOARD], int p
 		mark = "O";
 	}
 	int posY = (int)location[0] - '1';
-	cout << posY << endl;
 	int posX = (int)location[1] - '1';
-	cout << posX << endl;
 	int countUp = 0;
 	int countDown = 0;
 	for (int i = posY; i >= 0; i--)
@@ -119,8 +119,9 @@ bool CheckWinColumn(string location, string board[SIZE_BOARD][SIZE_BOARD], int p
 			break;
 		}
 	}
-	return countUp + countDown == MARK_WIN;
+	return countUp + countDown == Point_Need_To_WIN;
 }
+// check win Diagonal
 bool CheckWinPriDiagonal(string location, string board[SIZE_BOARD][SIZE_BOARD], int player) {
 	string mark = "";
 
@@ -133,9 +134,7 @@ bool CheckWinPriDiagonal(string location, string board[SIZE_BOARD][SIZE_BOARD], 
 		mark = "O";
 	}
 	int posY = (int)location[0] - '1';
-	cout << posY << endl;
 	int posX = (int)location[1] - '1';
-	cout << posX << endl;
 	int countUp = 0;
 	int countDown = 0;
 
@@ -158,7 +157,7 @@ bool CheckWinPriDiagonal(string location, string board[SIZE_BOARD][SIZE_BOARD], 
 			}
 		}
 	}
-	for (int i = 1; i < 25; i++)
+	for (int i = 1; i < 100; i++)
 	{
 		if (posX - i < 0 || posY - i < 0)
 		{
@@ -176,11 +175,68 @@ bool CheckWinPriDiagonal(string location, string board[SIZE_BOARD][SIZE_BOARD], 
 			}
 		}
 	}
-	return countUp + countDown == MARK_WIN;
+	return countUp + countDown == Point_Need_To_WIN;
+}
+bool CheckWinDiagonal(string location, string board[SIZE_BOARD][SIZE_BOARD], int player) {
+	string mark = "";
+
+	if (player == 1)
+	{
+		mark = "X";
+	}
+	else
+	{
+		mark = "O";
+	}
+	int posY = (int)location[0] - '1';
+	int posX = (int)location[1] - '1';
+	int countUp = 0;
+	int countDown = 0;
+
+
+	for (int i = 0; i < 100; i++)
+	{
+		if (posX + i > SIZE_BOARD || posY - i < 0)
+		{
+			break;
+		}
+		else
+		{
+			if (board[posY - i][posX + i] == mark)
+			{
+				countUp++;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+	}
+	for (int i = 1; i < 100; i++)
+	{
+		if (posX - i < 0 || posY + i > SIZE_BOARD)
+		{
+			break;
+		}
+		else
+		{
+			if (board[posY + i][posX - i] == mark)
+			{
+				countDown++;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+
+	}
+	return countUp + countDown == Point_Need_To_WIN;
 }
 int CheckWin(string board[SIZE_BOARD][SIZE_BOARD], string location, int player) {
-	cout << "ham check in:" << location << endl;
-	if (CheckWinhorizontal(location, board, player) == true || CheckWinColumn(location, board, player) == true || CheckWinPriDiagonal(location, board, player) == true)
+	if (CheckWinhorizontal(location, board, player) == true || CheckWinColumn(location, board, player) == true || CheckWinPriDiagonal(location, board, player) == true || CheckWinDiagonal(location, board, player) == true)
 	{
 		return 1;
 	}
@@ -234,7 +290,6 @@ int main()
 			ShowTheBoard(board);
 			checkWin = CheckWin(board, chess, player);
 			player++;
-			cout << checkWin;
 			if (checkWin == 1 || checkWin == 0) break;
 		}
 		if (player == 2)
@@ -248,7 +303,6 @@ int main()
 			PlayChessPlayer(chess, board, player);
 			ShowTheBoard(board);
 			checkWin = CheckWin(board, chess, player);
-			cout << checkWin;
 			player--;
 			if (checkWin == 1 || checkWin == 0) break;
 		}
