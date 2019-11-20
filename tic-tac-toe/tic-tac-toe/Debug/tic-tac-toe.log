@@ -1,2 +1,2 @@
 ﻿  tic-tac-toe.cpp
-F:\project Unity\C-GameLoftDuy\tic-tac-toe\tic-tac-toe\tic-tac-toe.cpp(6,10): fatal error C1083: Cannot open include file: 'tic-tac-toe.h': No such file or directory
+  tic-tac-toe.vcxproj -> F:\project Unity\C-GameLoftDuy\tic-tac-toe\Debug\tic-tac-toe.exe

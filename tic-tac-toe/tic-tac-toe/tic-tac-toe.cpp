@@ -3,17 +3,17 @@
 
 #include <iostream>
 #include <string>
-#include "tic-tac-toe.h"
+
 using namespace std;
 
-#define SIZE_BOARD 3
+#define SIZE_BOARD 9
 #define MARK_WIN 3
 
-void ShowTheBoard(string board[3][3])
+void ShowTheBoard(string board[SIZE_BOARD][SIZE_BOARD])
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < SIZE_BOARD; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < SIZE_BOARD; j++)
 			cout << "\t" << board[i][j];
 		cout << "\n";
 	}
@@ -21,9 +21,9 @@ void ShowTheBoard(string board[3][3])
 
 //mark turn player1 (mark X)
 void PlayChessPlayer(string location, string board[SIZE_BOARD][SIZE_BOARD], int Player) {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < SIZE_BOARD; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < SIZE_BOARD; j++)
 			if (location.compare(board[i][j]) == 0) {
 				if (Player == 1)
 				{
@@ -86,10 +86,10 @@ bool CheckWinhorizontal(string location, string board[SIZE_BOARD][SIZE_BOARD], i
 	}
 	else
 	{
-		mark = "Y";
+		mark = "O";
 	}
-	int posX = (int)location[0] - '1';
-	int posY = (int)location[1] - '1';
+	int posY = (int)location[0] - '1';
+	int posX = (int)location[1] - '1';
 	int countLeft = 0;
 	int countRight = 0;
 	//count left
@@ -128,7 +128,7 @@ bool CheckWinColumn(string location, string board[SIZE_BOARD][SIZE_BOARD], int p
 	}
 	else
 	{
-		mark = "Y";
+		mark = "O";
 	}
 	int posY = (int)location[0] - '1';
 	cout << posY << endl;
@@ -195,18 +195,24 @@ int main()
 	}
 
 	string chess = "";
-	string  board[SIZE_BOARD][SIZE_BOARD] = { {"11","12","13"},{"21","22","23"},{"31","32","33"} };
+	string  board[SIZE_BOARD][SIZE_BOARD];/* = { {"11","12","13"},{"21","22","23"},{"31","32","33"} };*/
+	for (int i = 0; i < SIZE_BOARD; i++)
+	{
+		for (int j = 0; j < SIZE_BOARD; j++)
+		{
+			board[i][j] = (char)(i + 1 + 48);
+			board[i][j] += +(char)(j + 1 + 48);
+		}
+	}
 	ShowTheBoard(board);
 	do
 	{
-
-		player = (player % 2) ? 1 : 2;
 		if (player == 1) {
 			do {
 				cout << "Your Turn  " << namePlayer1 << ":";
 				cin >> chess;
 			} while (board[(int)chess[0] - '1'][(int)chess[1] - '1'] == "X" || board[(int)chess[0] - '1'][(int)chess[1] - '1'] == "O"
-				|| (int)chess[0] - '1' < 0 || (int)chess[0] - '1' >= 3 || (int)chess[1] - '1' < 0 || (int)chess[1] - '1' >= 3);
+				|| (int)chess[0] - '1' < 0 || (int)chess[0] - '1' >= SIZE_BOARD || (int)chess[1] - '1' < 0 || (int)chess[1] - '1' >= SIZE_BOARD);
 
 			PlayChessPlayer(chess, board, player);
 			ShowTheBoard(board);
@@ -222,12 +228,13 @@ int main()
 				cout << "Your Turn  " << namePlayer2 << ":";
 				cin >> chess;
 			} while (board[(int)chess[0] - '1'][(int)chess[1] - '1'] == "X" || board[(int)chess[0] - '1'][(int)chess[1] - '1'] == "O"
-				|| (int)chess[0] - '1' < 0 || (int)chess[0] - '1' >= 3 || (int)chess[1] - '1' < 0 || (int)chess[1] - '1' >= 3);
+				|| (int)chess[0] - '1' < 0 || (int)chess[0] - '1' >= SIZE_BOARD || (int)chess[1] - '1' < 0 || (int)chess[1] - '1' >= SIZE_BOARD);
 			PlayChessPlayer(chess, board, player);
+			ShowTheBoard(board);
 			checkWin = CheckWin(board, chess, player);
 			cout << checkWin;
-			ShowTheBoard(board);
 			player--;
+			if (checkWin == 1 || checkWin == 0) break;
 		}
 	} while (checkWin == -1);
 	//show player win
