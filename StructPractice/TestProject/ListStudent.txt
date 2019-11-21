@@ -1,6 +1,0 @@
-Id1
-Nameduy
-score7
-Id2
-Namenin
-score9
