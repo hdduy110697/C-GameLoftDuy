@@ -1,4 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (TestProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Source.cpp
-F:\project Unity\C-GameLoftDuy\StructPractice\TestProject\Source.cpp(38,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+F:\project Unity\C-GameLoftDuy\StructPractice\TestProject\Source.cpp(77,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
   TestProject.vcxproj -> F:\project Unity\C-GameLoftDuy\StructPractice\Debug\StructPractice.exe

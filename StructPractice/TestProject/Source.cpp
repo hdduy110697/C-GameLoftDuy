@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <fstream>
 
 using namespace std;
 
@@ -24,14 +25,57 @@ void DisplayList(list<Student> listStudent)
 		Display(*it);
 	}
 };
-Student InputStudent() {
+bool CheckIdStudent(list<Student> listStudent, int id) {
+	list<Student>::iterator it;
+	for (it = listStudent.begin(); it != listStudent.end(); it++) {
+		if ((it->id) == id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void SaveToFile(list<Student> listStudent) {
+
+}
+Student InputStudent(list<Student> listStudent) {
 	Student student;
-	cout << "Input Id :" << endl;
-	cin >> student.id;
+	bool check = true;
+	do
+	{
+		cout << "Input Id :" << endl;
+		int id;
+		cin >> id;
+		check = CheckIdStudent(listStudent, id);
+		if (check) {
+			cout << "id is already have input again"<<endl;
+		}
+		else
+		{
+			student.id = id;
+		}
+	} while (check == true);
 	cout << "Input Name :" << endl;
 	cin >> student.name;
-	cout << "Input Score :" << endl;
-	cin >> student.score;
+	float score;
+	bool checkScore=false;
+	do
+	{
+		cout << "Input Score :" << endl;
+		cin >> score;
+		if (score<0||score>10)
+		{
+			checkScore = true;
+			cout << "faise score innput again" << endl;
+		}
+		else
+		{
+			checkScore = false;
+			student.score = score;
+		}
+	} while (checkScore==true);
+	
 	return student;
 }
 void main()
@@ -65,7 +109,7 @@ void main()
 		{
 		case 1:
 		{
-			listStudent.push_back(InputStudent());
+			listStudent.push_back(InputStudent(listStudent));
 			break;
 		}
 		case 2:
@@ -73,11 +117,11 @@ void main()
 			DisplayList(listStudent);
 			break;
 		}
-		//case 3:
-		//{
-		//	Statements;
-		//	break;
-		//}
+		case 3:
+		{
+			SaveToFile(listStudent);
+			break;
+		}
 		//case 4:
 		//{
 		//	Statements;
