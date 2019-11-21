@@ -36,8 +36,14 @@ bool CheckIdStudent(list<Student> listStudent, int id) {
 	return false;
 }
 
-void SaveToFile(list<Student> listStudent) {
-
+void SaveToFile(list<Student> listStudent){
+	ofstream outfile("ListStudent.txt");
+	list<Student>::iterator it;
+	for (it = listStudent.begin(); it != listStudent.end(); it++) {
+		outfile << "Id Student :" << it->id << endl;
+		outfile << "Name Student" << it->name << endl;
+		outfile << "Score Student" << it->score << endl;
+	} 
 }
 Student InputStudent(list<Student> listStudent) {
 	Student student;
@@ -119,6 +125,7 @@ void main()
 		}
 		case 3:
 		{
+
 			SaveToFile(listStudent);
 			break;
 		}
