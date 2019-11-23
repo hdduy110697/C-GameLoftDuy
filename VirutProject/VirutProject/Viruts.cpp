@@ -1,6 +1,7 @@
 #include "Viruts.h"
 #include <iostream>
 #include <fstream>
+#include <list>
 using namespace std;
 
 Viruts::Viruts()
@@ -27,9 +28,9 @@ char* Viruts::getDna()
 {
 	return m_dna;
 }
-void Viruts::setResistance(int dna)
+void Viruts::setResistance(int res)
 {
-	m_resistance = dna;
+	m_resistance = res;
 }
 int Viruts::getResistance()
 {
@@ -57,7 +58,5 @@ void Viruts::ReduceResistance(int medicine_resistance)
 		m_resistance = 0;
 		cout << "Virut die"<<endl;
 	}
-	
-
 }
 
