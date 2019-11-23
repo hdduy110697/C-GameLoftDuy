@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DengueVirus.cpp" />
     <ClCompile Include="FluVirus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Viruts.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DengueVirus.h" />
     <ClInclude Include="FluVirus.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Viruts.h" />

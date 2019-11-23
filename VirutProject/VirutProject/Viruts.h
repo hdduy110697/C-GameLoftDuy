@@ -18,10 +18,11 @@ public:
 	Viruts(Viruts& viruts);
 	void LoadADNInformation();//Load DNA information from a ATGX.bin and store it in m_dna.
 	void ReduceResistance(int medicine_resistance); // medicine_resistance will reduce the resistance of virus.
+	virtual void InitResistance() = 0;
 	virtual void DoBorn() = 0;
 	virtual list<Viruts*> DoClone()=0;
 	virtual void DoDie() = 0;
-	virtual void InitResistance() = 0;
+	
 
 
 private:
