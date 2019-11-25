@@ -44,14 +44,28 @@ void patient::TakeMedicine()
 {
 	list<Viruts*>::iterator itLocation;
 	list<Viruts*>::iterator it;
+	int end = m_virusList.size();
+	int count = 0;
 	for (it = m_virusList.begin(); it != m_virusList.end(); it++) {
+		//because virus clone in end list
+		if (count==end)
+		{
+			break;
+		}
 		int medicine_resistance=  1 + rand() % (60 + 1 - 1);//random 1-60
 		(*it)->ReduceResistance(medicine_resistance);
 		if (((*it)->getResistance())==0)
 		{
 
 			m_virusList.remove((*it));
-			it = m_virusList.begin();
+			if (m_virusList.size() != 0) {
+				it = m_virusList.begin();
+			}
+			else
+			{
+				break;
+			}
+			
 
 		}
 		else
@@ -61,6 +75,7 @@ void patient::TakeMedicine()
 			itLocation = m_virusList.end();
 			m_virusList.splice(itLocation, listClone);
 		}
+		count++;
  	}
 }
 
@@ -74,6 +89,11 @@ void patient::DoDie()
 int patient::GetState()
 {
 	return m_state;
+}
+
+int patient::GetSizeListViruts()
+{
+	return m_virusList.size();
 }
 
 void patient::DeadTotalVirusResistance()

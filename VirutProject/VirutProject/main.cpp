@@ -10,6 +10,7 @@
 #include "patient.h"
 
 using namespace std;
+
 int main() {
 	//// random alway
 	srand(time(NULL));
@@ -18,10 +19,15 @@ int main() {
 	while (p->GetState() == 1)
 	{
 		cout << "Take Medicine(0 = NO, 1 = YES" << endl;
-		cin >> t;
+			cin >> t;
 		if (t == 1)
 		{
 			p->TakeMedicine();
+		}
+		if ((p->GetSizeListViruts()) == 0)
+		{
+			cout << "all viruts is dead";
+			break;
 		}
 	}
 	return 0;

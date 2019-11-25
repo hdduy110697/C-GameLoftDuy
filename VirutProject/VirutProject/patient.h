@@ -11,6 +11,7 @@ public:
 	void TakeMedicine();
 	void DoDie();
 	int GetState();
+	int GetSizeListViruts();
 	void DeadTotalVirusResistance();
 	patient();
 	~patient();
