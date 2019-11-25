@@ -44,6 +44,7 @@ void patient::TakeMedicine()
 {
 	list<Viruts*>::iterator itLocation;
 	list<Viruts*>::iterator it;
+	int medicine_resistance = 1 + rand() % (60 + 1 - 1);//random 1-60
 	int end = m_virusList.size();
 	int count = 0;
 	for (it = m_virusList.begin(); it != m_virusList.end(); it++) {
@@ -52,7 +53,6 @@ void patient::TakeMedicine()
 		{
 			break;
 		}
-		int medicine_resistance=  1 + rand() % (60 + 1 - 1);//random 1-60
 		(*it)->ReduceResistance(medicine_resistance);
 		if (((*it)->getResistance())==0)
 		{
