@@ -65,7 +65,6 @@ void patient::TakeMedicine()
 			{
 				break;
 			}
-			
 
 		}
 		else

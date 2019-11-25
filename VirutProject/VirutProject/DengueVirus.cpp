@@ -11,11 +11,9 @@ using namespace std;
 #define NS3 1
 #define NS5 2
 #define E 3
-DengueVirus::DengueVirus(DengueVirus& dengueVirus)
+DengueVirus::DengueVirus(DengueVirus& dengueVirus) : Viruts(dengueVirus)
 {
 	m_protein[4] = dengueVirus.getProtein();
-	this->setDna(dengueVirus.getDna());
-	this->setResistance(dengueVirus.getResistance());
 }
 DengueVirus::DengueVirus()
 {

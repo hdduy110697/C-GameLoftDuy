@@ -32,11 +32,9 @@ void FluVirus::InitResistance()
 
 
 
-FluVirus::FluVirus(FluVirus& fluViruts)
+FluVirus::FluVirus(FluVirus& fluViruts) : Viruts(fluViruts)
 {
 	m_color = fluViruts.getColor();
-	setDna(fluViruts.getDna());
-	setResistance(fluViruts.getResistance());
 }
 
 FluVirus::FluVirus()

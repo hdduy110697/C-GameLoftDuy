@@ -19,11 +19,13 @@ int main() {
 	while (p->GetState() == 1)
 	{
 		cout << "Take Medicine(0 = NO, 1 = YES" << endl;
-			cin >> t;
+		cin >> t;
+		cout << "number virut" << p->GetSizeListViruts() << endl;
 		if (t == 1)
 		{
 			p->TakeMedicine();
 		}
+		cout << "number virut after" << p->GetSizeListViruts() << endl;
 		if ((p->GetSizeListViruts()) == 0)
 		{
 			cout << "all viruts is dead";
