@@ -9,7 +9,7 @@ public:
 	// getter setter
 	void setDna(char* dna);
 	char* getDna();
-	void setResistance(int dna);
+	void setResistance(int Res);
 	int getResistance();
 
 	//Contructor

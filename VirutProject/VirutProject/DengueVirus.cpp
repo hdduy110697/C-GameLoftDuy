@@ -11,6 +11,18 @@ using namespace std;
 #define NS3 1
 #define NS5 2
 #define E 3
+DengueVirus::DengueVirus(DengueVirus& dengueVirus)
+{
+	m_protein[4] = dengueVirus.getProtein();
+	this->setDna(dengueVirus.getDna());
+	this->setResistance(dengueVirus.getResistance());
+}
+DengueVirus::DengueVirus()
+{
+	DoBorn();
+	InitResistance();
+
+}
 void DengueVirus::setProtein(char protein)
 {
 	this->m_protein[4] = protein;
@@ -68,12 +80,8 @@ void DengueVirus::DoBorn()
 list<Viruts*> DengueVirus::DoClone()
 {
 	list<Viruts*> listResult;
-	DengueVirus* dengueVirus1 = new DengueVirus();
-	dengueVirus1->DoBorn();
-	dengueVirus1->InitResistance();
-	DengueVirus* dengueVirus2 = new DengueVirus();
-	dengueVirus2->DoBorn();
-	dengueVirus2->InitResistance();
+	DengueVirus* dengueVirus1 = new DengueVirus(*this);
+	DengueVirus* dengueVirus2 = new DengueVirus(*this);
 	listResult.push_back(dengueVirus1);
 	listResult.push_back(dengueVirus2);
 	return listResult;

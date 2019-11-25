@@ -46,6 +46,7 @@ void Viruts:: LoadADNInformation()
 	ifstream inFile;
 	inFile.open("ATGX.bin");
 	inFile.getline(m_dna, 255);
+	inFile.close();
 }
 void Viruts::ReduceResistance(int medicine_resistance)
 {
@@ -53,7 +54,7 @@ void Viruts::ReduceResistance(int medicine_resistance)
 	{
 		m_resistance = m_resistance - medicine_resistance;
 	}
-	else
+	if(m_resistance<0)
 	{
 		m_resistance = 0;
 		cout << "Virut die"<<endl;

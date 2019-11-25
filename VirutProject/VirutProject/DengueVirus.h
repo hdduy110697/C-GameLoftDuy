@@ -1,10 +1,12 @@
 #pragma once
 #include "Viruts.h"
-
 #include <list>
 using namespace std;
 class DengueVirus :public Viruts
 {
+public:
+	DengueVirus(DengueVirus& fluViruts);
+	DengueVirus();
 	void setProtein(char protein);
 	char getProtein();
 	void InitResistance();
