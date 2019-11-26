@@ -30,12 +30,16 @@ void patient::DoStart()
 			Viruts* fluVirus = new FluVirus();
 			fluVirus->DoBorn();
 			m_virusList.push_back(fluVirus);
+			fluVirus = NULL;
+			delete fluVirus;
 		}
 		if (typeVirus == DENGUEVIRUS)
 		{
 			Viruts* dengueVirus = new DengueVirus();
 			dengueVirus->DoBorn();
 			m_virusList.push_back(dengueVirus);
+			dengueVirus = NULL;
+			delete dengueVirus;
 		}
 	}
 }
@@ -47,7 +51,7 @@ void patient::TakeMedicine()
 	int medicine_resistance = 1 + rand() % (60 + 1 - 1);//random 1-60
 	int end = m_virusList.size();
 	int count = 0;
-	for (it = m_virusList.begin(); it != m_virusList.end(); it++) {
+	for (it = m_virusList.begin(); it != m_virusList.end(); ) {
 		//because virus clone in end list
 		if (count==end)
 		{
@@ -56,16 +60,9 @@ void patient::TakeMedicine()
 		(*it)->ReduceResistance(medicine_resistance);
 		if (((*it)->getResistance())==0)
 		{
-
+				delete *it;
 			m_virusList.remove((*it));
-			if (m_virusList.size() != 0) {
-				it = m_virusList.begin();
-			}
-			else
-			{
-				break;
-			}
-
+			it = m_virusList.begin();
 		}
 		else
 		{
@@ -73,6 +70,7 @@ void patient::TakeMedicine()
 			listClone =(*it)->DoClone();
 			itLocation = m_virusList.end();
 			m_virusList.splice(itLocation, listClone);
+			it++;
 		}
 		count++;
  	}
@@ -117,4 +115,8 @@ patient::patient()
 
 patient::~patient()
 {
+	list<Viruts*>::iterator it;
+	for (it = m_virusList.begin(); it != m_virusList.end(); it++) {
+		delete* it;
+	}
 }

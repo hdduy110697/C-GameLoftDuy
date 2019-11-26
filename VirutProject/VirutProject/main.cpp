@@ -8,25 +8,26 @@
 #include <string>
 #include <cstring>
 #include "patient.h"
+#include "vld.h"
 
 using namespace std;
 
 int main() {
 	//// random alway
 	srand(time(NULL));
-	patient* p = new patient();
+	patient p;
 	int t = 0;
-	while (p->GetState() == 1)
+	while (p.GetState() == 1)
 	{
 		cout << "Take Medicine(0 = NO, 1 = YES" << endl;
 		cin >> t;
-		cout << "number virut" << p->GetSizeListViruts() << endl;
-		if (t == 1)
+		cout << "number virut" << p.GetSizeListViruts() << endl;
+			if (t == 1)
 		{
-			p->TakeMedicine();
+			p.TakeMedicine();
 		}
-		cout << "number virut after" << p->GetSizeListViruts() << endl;
-		if ((p->GetSizeListViruts()) == 0)
+		cout << "number virut after" << p.GetSizeListViruts() << endl;
+		if ((p.GetSizeListViruts()) == 0)
 		{
 			cout << "all viruts is dead";
 			break;

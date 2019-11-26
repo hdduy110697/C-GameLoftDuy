@@ -13,6 +13,7 @@ Viruts::Viruts()
 Viruts ::~Viruts()
 {
 	delete[] m_dna;
+	m_resistance = NULL;
 }
 Viruts::Viruts(char* dna, int resistance)
 {
@@ -22,7 +23,13 @@ Viruts::Viruts(char* dna, int resistance)
 // getter and setter
 void Viruts::setDna(char* dna)
 {
-	m_dna = dna;
+	m_dna = new char[100];
+	int i = 0;
+	while (dna[i] != NULL)
+	{
+		m_dna[i] = dna[i];
+		i++;
+	}
 }
 char* Viruts::getDna()
 {
@@ -37,8 +44,8 @@ int Viruts::getResistance()
 	return m_resistance;
 }
 //copy contructor
-Viruts::Viruts(Viruts& viruts) {
-	m_dna = viruts.m_dna;
+Viruts::Viruts(const Viruts& viruts) {
+	setDna(viruts.m_dna);
 	m_resistance = viruts.m_resistance;
 }
 void Viruts:: LoadADNInformation()

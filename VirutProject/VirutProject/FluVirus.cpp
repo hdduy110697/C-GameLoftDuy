@@ -30,11 +30,16 @@ void FluVirus::InitResistance()
 	}
 }
 
-
-
-FluVirus::FluVirus(FluVirus& fluViruts) : Viruts(fluViruts)
+FluVirus::~FluVirus()
 {
-	m_color = fluViruts.getColor();
+	m_color = 0;
+}
+
+
+
+FluVirus::FluVirus(const FluVirus& fluViruts) : Viruts(fluViruts)
+{
+	setColor( fluViruts.m_color);
 }
 
 FluVirus::FluVirus()
@@ -64,6 +69,8 @@ list<Viruts*> FluVirus::DoClone()
 	list<Viruts*> listResult;
 	FluVirus* fluVirus = new FluVirus(*this);
 	listResult.push_back(fluVirus);
+	fluVirus = NULL;
+	delete fluVirus;
 	return listResult;
 }
 
