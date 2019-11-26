@@ -19,6 +19,7 @@ int main() {
 	int t = 0;
 	while (p.GetState() == 1)
 	{
+		
 		cout << "Take Medicine(0 = NO, 1 = YES" << endl;
 		cin >> t;
 		cout << "number virut" << p.GetSizeListViruts() << endl;
@@ -33,5 +34,7 @@ int main() {
 			break;
 		}
 	}
+	//test DoDie
+	p.DoDie();
 	return 0;
 }

@@ -78,8 +78,16 @@ void patient::TakeMedicine()
 
 void patient::DoDie()
 {
+	list<Viruts*>::iterator it;
+	for (it = m_virusList.begin(); it != m_virusList.end(); ) {
+		//because virus clone in end list
+		{
+			delete* it;
+			m_virusList.remove((*it));
+			it = m_virusList.begin();
+		}
 	
-	m_virusList.clear();
+	}
 	m_state = DIE;
 }
 
